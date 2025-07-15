@@ -1,0 +1,27 @@
+{
+  "name": "server-state-adapter",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@8.6.5",
+  "workspaces": [
+    "packages/*",
+    "example"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "clean": "turbo clean",
+    "preview": "turbo preview",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.1",
+    "tsup": "^8.5.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.2.2",
+    "vite": "6.3.4"
+  }
+}

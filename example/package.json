@@ -1,0 +1,29 @@
+{
+  "name": "server-state-manager-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@server-state-manager-adapter/contracts": "0.1.0",
+    "@server-state-manager-adapter/http-fetch-json-adapter": "0.1.0",
+    "@server-state-manager-adapter/react-adapter": "0.1.0",
+    "@server-state-manager-adapter/tanstack-query-react-adapter": "0.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.0.13",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "typescript": "^5.2.2",
+    "vite": "6.3.4"
+  }
+}

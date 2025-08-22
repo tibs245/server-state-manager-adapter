@@ -3,6 +3,7 @@ import {
   ServerStateManagerPort,
   ServerStateQueryOptions,
 } from '@server-state-manager-adapter/contracts';
+import { ServerStateManagerUseQueryFn, ServerStateQueryResult } from './types';
 
 ////Exemple :
 //// ```tsx
@@ -16,7 +17,6 @@ import {
 ////     return <code>{JSON.stringify(data)}</code>
 //// }
 //// ```
-
 export type ServerStateUseQueryParams<
   TNetworkClient extends NetworkClientPortAvailable,
   TQueryFnData = unknown,
@@ -24,7 +24,10 @@ export type ServerStateUseQueryParams<
   TData = TQueryFnData,
   TQueryKey extends readonly unknown[] = unknown[],
 > = {
-  serverStateManager: ServerStateManagerPort<TNetworkClient>;
+  serverStateManager: ServerStateManagerPort<
+    TNetworkClient,
+    ServerStateManagerUseQueryFn<TNetworkClient>
+  >;
   request: ServerStateQueryOptions<TNetworkClient, TQueryFnData, TError, TData, TQueryKey>;
 };
 

@@ -1,5 +1,5 @@
 import { HttpClientPort } from './httpClient.port';
-import { ServerStateQueryOptionsPrepared, ServerStateQueryResult } from '../serviceQueryOptions';
+import { ServerStateQueryOptionsPrepared } from '../serviceQueryOptions';
 
 /**
  * Type for server state configuration
@@ -19,15 +19,11 @@ export type ServerStateOptions = {
   retry?: number | boolean;
 };
 
-export type ServerStateManagerPort<TNetworkClient extends HttpClientPort> = {
+export type ServerStateManagerPort<
+  TNetworkClient extends HttpClientPort,
+  TUseQueryFn extends Function,
+> = {
   networkClient: TNetworkClient;
   defaultServerStateOptions?: ServerStateOptions;
-  useQuery: <
-    TQueryFnData = unknown,
-    TError = Error,
-    TData = TQueryFnData,
-    TQueryKey extends readonly unknown[] = unknown[],
-  >(
-    params: ServerStateQueryOptionsPrepared<TQueryFnData, TError, TData, TQueryKey>
-  ) => ServerStateQueryResult<TData, TError>;
+  useQuery: TUseQueryFn;
 };

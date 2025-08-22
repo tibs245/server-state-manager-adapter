@@ -70,13 +70,13 @@ export const serverStateManager = createServerStateManager({
 `App.tsx`
 
 ```tsx
-import { ReactTanstackQueryProvider } from '@ServerStateAdapter/reactTanstackQuery';
+import { VueTanstackQueryProvider } from '@ServerStateAdapter/reactTanstackQuery';
 import { serverStateManager } from '@/configuration/ServerQueryConfiguration.tsx';
 
 return (
-  <ReactTanstackQueryProvider configuration={serverStateManager}>
+  <VueTanstackQueryProvider configuration={serverStateManager}>
     <App />
-  </ReactTanstackQueryProvider>
+  </VueTanstackQueryProvider>
 );
 ```
 

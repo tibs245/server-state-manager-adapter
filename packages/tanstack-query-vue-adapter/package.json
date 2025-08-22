@@ -1,5 +1,5 @@
 {
-  "name": "@server-state-manager-adapter/tanstack-query-react-adapter",
+  "name": "@server-state-manager-adapter/tanstack-query-vue-adapter",
   "version": "0.1.0",
   "description": "TypeScript module for react server state management",
   "main": "dist/index.cjs",
@@ -35,18 +35,17 @@
   "license": "MIT",
   "dependencies": {
     "@server-state-manager-adapter/contracts": "0.1.0",
-    "@server-state-manager-adapter/react-adapter": "0.1.0",
-    "@tanstack/react-query": "^5.83.0"
+    "@server-state-manager-adapter/vue-adapter": "0.1.0",
+    "@tanstack/vue-query": "^5.83.0"
   },
   "devDependencies": {
     "tsup": "^8.0.1",
     "typescript": "^5.2.2",
     "react": "^19.1.0",
     "vitest": "3.0.5",
-    "@testing-library/react": "^14.1.2",
+    "@testing-library/vue": "^8.1.0",
     "@vitest/ui": "^1.2.0",
-    "jsdom": "^24.0.0",
-    "@vitejs/plugin-react": "^4.2.1"
+    "jsdom": "^24.0.0"
   },
   "peerDependencies": {
     "typescript": ">=4.0.0"

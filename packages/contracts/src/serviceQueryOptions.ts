@@ -1,5 +1,6 @@
 import { HttpClientPort } from './ports';
 import { NetworkClientPortAvailable } from './ports';
+import { QueryKey } from './types';
 
 export type QueryFnParams<TNetworkClient extends NetworkClientPortAvailable> = {
   networkClient: TNetworkClient;
@@ -18,70 +19,28 @@ export type ServerStateQueryOptions<
   TQueryFnData = unknown,
   TError = Error,
   TData = TQueryFnData,
-  TQueryKey extends readonly unknown[] = readonly unknown[],
+  TQueryKey extends Readonly<QueryKey> = Readonly<QueryKey>,
 > = {
-  // Query key for caching and deduplication
   queryKey: TQueryKey;
-
-  // The query function that fetches the data
   queryFn: (queryFnParams: QueryFnParams<NetworkClient>) => Promise<TQueryFnData>;
-
-  // Optional data transformer
   select?: (data: TQueryFnData) => TData;
-
-  // Refetching options
-  // staleTime?: number;
   cacheTime?: number;
   refetchOnMount?: boolean | 'always';
-  // refetchOnWindowFocus?: boolean | "always";
-  // refetchOnReconnect?: boolean | "always";
   refetchInterval?: number | false;
-  // refetchIntervalInBackground?: boolean;
-
-  // Retry options
   retry?: boolean | number | ((failureCount: number, error: TError) => boolean);
   retryDelay?: number | ((retryAttempt: number, error: TError) => number);
-
-  // Initial data
   initialData?: TData;
-  // initialDataUpdatedAt?: number;
-
-  // Placeholder data
-  // placeholderData?: TQueryFnData | (() => TQueryFnData);
-
-  // Behavior flags
   enabled?: boolean;
-  // suspense?: boolean;
-
-  // Network mode
   networkMode?: 'online' | 'always' | 'offlineFirst';
 };
 
 export type ServerStateQueryOptionsPrepared<
+  RequestClient extends NetworkClientPortAvailable = HttpClientPort,
   TQueryFnData = unknown,
   TError = Error,
   TData = TQueryFnData,
-  TQueryKey extends readonly unknown[] = unknown[],
+  TQueryKey extends Readonly<QueryKey> = Readonly<QueryKey>,
 > = {
   // The query function that fetches the data
   queryFn: () => Promise<TQueryFnData>;
-} & Omit<
-  ServerStateQueryOptions<HttpClientPort, TQueryFnData, TError, TData, TQueryKey>,
-  'queryFn'
->;
-
-export type ServerStateQueryResult<TData = unknown, TError = Error> = {
-  data: TData;
-  dataUpdatedAt: number;
-  error: TError;
-  errorUpdatedAt: number;
-  failureCount: number;
-  isError: boolean;
-  isFetched: boolean;
-  isFetching: boolean;
-  isLoading: boolean;
-  isPending: boolean;
-  isSuccess: boolean;
-  isEnabled: boolean;
-  status: 'pending' | 'error' | 'success';
-};
+} & Omit<ServerStateQueryOptions<RequestClient, TQueryFnData, TError, TData, TQueryKey>, 'queryFn'>;

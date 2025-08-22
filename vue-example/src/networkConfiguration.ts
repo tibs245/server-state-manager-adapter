@@ -1,6 +1,6 @@
 import { ServerStateOptions, ServerStateConfig } from '@server-state-manager-adapter/contracts';
 import { buildFetchNetworkClient } from '@server-state-manager-adapter/http-fetch-json-adapter';
-import { buildServerStateManager } from '@server-state-manager-adapter/tanstack-query-react-adapter';
+import { buildTanstackServerStateManager } from '@server-state-manager-adapter/tanstack-query-vue-adapter';
 
 const defaultStateOptions: ServerStateOptions = {
   retry: 3,
@@ -12,7 +12,7 @@ const serverStateConfig: ServerStateConfig = {
 };
 
 // Create a server state manager with default configuration
-export const serverStateManager = buildServerStateManager({
+export const serverStateManager = buildTanstackServerStateManager({
   defaultServerStateOptions: defaultStateOptions,
   networkClient: buildFetchNetworkClient(serverStateConfig),
 });

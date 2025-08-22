@@ -1,0 +1,27 @@
+{
+  "name": "server-state-manager-vue-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@server-state-manager-adapter/contracts": "0.1.0",
+    "@server-state-manager-adapter/http-fetch-json-adapter": "0.1.0",
+    "@server-state-manager-adapter/vue-adapter": "0.1.0",
+    "@server-state-manager-adapter/tanstack-query-vue-adapter": "0.1.0",
+    "@tanstack/vue-query": "^5.60.5",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@types/node": "24.0.13",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "^5.2.2",
+    "vite": "6.3.4"
+  }
+}

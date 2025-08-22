@@ -2,12 +2,12 @@ import {
   NetworkClientPortAvailable,
   ServerStateManagerPort,
 } from '@server-state-manager-adapter/contracts';
-import { ServerStateManagerUseQueryFn } from '@server-state-manager-adapter/react-adapter';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from './useQuery';
+import { ServerStateManagerUseQueryFn } from '@server-state-manager-adapter/vue-adapter';
 
-export * from './reactTanstackQueryProvider';
+export * from './vueTanstackQueryProvider';
 
-export const buildServerStateManager = <TNetworkClient extends NetworkClientPortAvailable>({
+export const buildTanstackServerStateManager = <TNetworkClient extends NetworkClientPortAvailable>({
   networkClient,
   defaultServerStateOptions,
 }: Pick<

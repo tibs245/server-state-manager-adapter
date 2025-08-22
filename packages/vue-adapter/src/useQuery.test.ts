@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import { renderHook } from '@testing-library/react';
+import { render } from '@testing-library/vue';
+import { defineComponent } from 'vue';
 import { useServerStateQuery } from './useQuery';
 import {
   ServerStateManagerPort,
@@ -30,7 +31,7 @@ describe('useServerStateQuery', () => {
     const mockServerStateManager = {
       networkClient: mockNetworkClient,
       useQuery: mockUseQuery,
-    } as unknown as ServerStateManagerPort<any, any>;
+    } as unknown as ServerStateManagerPort<any>;
 
     // Create mock request options
     const mockQueryFn = vi.fn().mockResolvedValue('test-data');
@@ -39,13 +40,20 @@ describe('useServerStateQuery', () => {
       queryFn: mockQueryFn,
     };
 
-    // Render the hook with our mocks
-    renderHook(() =>
-      useServerStateQuery({
-        serverStateManager: mockServerStateManager,
-        request: mockRequest,
-      })
-    );
+    // Create a test component that uses the composable
+    const TestComponent = defineComponent({
+      setup() {
+        const result = useServerStateQuery({
+          serverStateManager: mockServerStateManager,
+          request: mockRequest,
+        });
+        return { result };
+      },
+      template: '<div>{{ result.data }}</div>',
+    });
+
+    // Mount the test component
+    render(TestComponent);
 
     // Verify that serverStateManager.useQuery was called
     expect(mockUseQuery).toHaveBeenCalledTimes(1);

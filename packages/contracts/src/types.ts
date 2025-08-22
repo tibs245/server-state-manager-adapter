@@ -11,3 +11,15 @@ export type RetryDelayValue<TError> = number | ((failureCount: number, error: TE
 
 // Function that performs the mutation operation
 export type MutationFunction<TData, TVariables> = (variables: TVariables) => Promise<TData> | TData;
+
+export interface Register {}
+
+export type QueryKey = Register extends {
+  queryKey: infer TQueryKey;
+}
+  ? TQueryKey extends ReadonlyArray<unknown>
+    ? TQueryKey
+    : TQueryKey extends Array<unknown>
+      ? TQueryKey
+      : ReadonlyArray<unknown>
+  : ReadonlyArray<unknown>;
